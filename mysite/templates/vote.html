@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load bootstrap3 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+{% bootstrap_messages %}
+{% block title %}Zagłosowano{% endblock %}
+{% block content %}
+{% if accepted %}
+    <div class="alert alert-success">
+    <strong>{{message}}</strong>
+    </div>
+    <a class="btn btn-primary" href={% url 'Lista wyborów' logged_person.pesel %} >Powrót do listy wyborów</a>
+{% else %}
+    <div class="alert alert-danger">
+    <strong>Wybrano nieprawidłową liczbę kandydatów</strong>
+    </div>
+    <a class="btn btn-primary" href={% url 'Lista kandydatów' logged_person.pesel election.ID_WYBOROW %} >Powrót do głosowania</a>
+{% endif %}
+
+{% endblock %}

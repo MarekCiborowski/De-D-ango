@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% load bootstrap3 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+{% bootstrap_messages %}
+{% block title %}Wybory{% endblock %}
+{% block content %}
+    <table class="table" align="center">
+<caption class="text-center">Wybory dostępne dla osoby: {{logged_person.imie }} {{ logged_person.nazwisko }}</caption>
+<tr bgcolor="#00ffff">
+    <td>
+        ID wyborów
+    </td>
+    <td>
+        Nazwa wyborów
+    </td>
+    <td>
+        Zakończenie wyborów
+    </td>
+    <td>
+        Akcja
+    </td>
+</tr>
+{%for election in allowed_elections %}
+<tr>
+    <td>
+        {{ election.myElection.ID_WYBOROW }}
+    </td>
+    <td>
+        {{ election.myElection.nazwaWyborow }}
+    </td>
+    <td>
+        {{ election.myElection.dataZakonczenia }}
+    </td>
+    <td>
+    <!-- Nie głosowano a wybory wciąż się nie zakończyły -->
+        {% if not election.voted.oddalGlos and election.in_time%}
+        <a class="btn btn-primary" href={% url 'Lista kandydatów' logged_person.pesel election.myElection.ID_WYBOROW  %} >Głosuj</a>
+        {% else %}
+            <!-- Wybory nie zostały zakończone, ale już w nich zagłosowano -->
+            {% if election.in_time %}
+                <a class="btn btn-default" href={% url 'Szczegóły wyborów' logged_person.pesel election.myElection.ID_WYBOROW  %} >Aktualne wyniki</a>
+            {% else %}
+                <!-- Po zakończeniu wyborów istnieje możliwość wyświetlenia wyników -->
+                <a class="btn btn-info" href={% url 'Wyniki wyborów' logged_person.pesel election.myElection.ID_WYBOROW  %} >Wynik wyborów</a>
+            {% endif %}
+        {% endif %}
+    </td>
+</tr>
+{% endfor %}
+</table>
+    <br/>
+{% endblock %}

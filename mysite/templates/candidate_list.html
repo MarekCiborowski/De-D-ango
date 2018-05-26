@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load bootstrap3 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+{% bootstrap_messages %}
+{% block title %}Lista kandydatów do głosowania{% endblock %}
+{% block content %}
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+<form action="{% url 'Głosuj' logged_person.pesel election.ID_WYBOROW%}" method="post" class="">
+<div  class="select2-container " style="background-color: aqua; border-radius: 10px; padding: 15px">
+<h4>Głosujesz w wyborach: {{ election.nazwaWyborow }}</h4>
+<br/>
+{% csrf_token %}
+{% for x in candidates %}
+    <div>
+    <input type="checkbox" name="choices" id="{{ x.pesel }}" value="{{ x.pesel }}" />
+    <label>{{ x.imie }} {{x.nazwisko}}</label>
+    </div>
+{% endfor %}
+<br/>
+<input class="btn btn-primary" type="submit" value="Głosuj" />
+<br/><br/>
+</div>
+</form>
+
+
+{% endblock %}

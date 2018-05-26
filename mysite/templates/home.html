@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% load bootstrap3 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+{% bootstrap_messages %}
+{% block title %}Wybory{% endblock %}
+{% block content %}
+{% bootstrap_button "Logowanie użytkownika" href='login'  %} <br/><br/>
+    {% bootstrap_button "Obszar administratora" href='admin' button_type="link" button_class="btn-primary" %}
+<table class="table" align="center">
+<caption class="text-center">Najnowsze wybory</caption>
+<tr bgcolor="#00ffff">
+    <td>
+        ID wyborów
+    </td>
+    <td>
+        Nazwa wyborów
+    </td>
+    <td>
+        Zakończenie wyborów
+    </td>
+</tr>
+{%for election in all_elections %}
+<tr>
+    <td>
+        {{ election.ID_WYBOROW }}
+    </td>
+    <td>
+        {{ election.nazwaWyborow }}
+    </td>
+    <td>
+        {{ election.dataZakonczenia }}
+    </td>
+</tr>
+{% endfor %}
+</table>
+    <br/>
+{% endblock %}

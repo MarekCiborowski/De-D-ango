@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load bootstrap3 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+{% bootstrap_messages %}
+{% block title %}Wybory{% endblock %}
+{% block content %}
+    <table class="table" align="center">
+<caption class="text-center">Wyniki wyborów: {{ election.nazwaWyborow }}</caption>
+<tr bgcolor="#00ffff">
+    <td>
+        Kandydat
+    </td>
+    <td>
+        Poparcie
+    </td>
+</tr>
+{%for candidate in candidates %}
+<tr>
+    <td>
+        {{ candidate.name }} {{ candidate.surname }}
+    </td>
+    <td>
+        {{ candidate.rating }}%
+    </td>
+</tr>
+{% endfor %}
+</table>
+
+    <div class="badge" style="font-size: 15px">Frekwencja: {{ turnout }}%</div>
+    <br/><br/>
+    <a class="btn btn-primary" href={% url 'Lista wyborów' logged_person.pesel %} >Powrót do listy wyborów</a>
+{% endblock %}

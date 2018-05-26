@@ -1,0 +1,33 @@
+{% load staticfiles %}
+{# Load the tag library #}
+{% load bootstrap3 %}
+
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+{# Display django.contrib.messages as Bootstrap alerts #}
+{% bootstrap_messages %}
+{% load bootstrap3 %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<link rel="stylesheet" href="{% static 'css/mystyles.css' %}">
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+{% bootstrap_messages %}
+<head>
+<span class=" container fixed-top btn-success btn">
+    <h1><a href="/">Elections and everything</a></h1>
+</span>
+</head>
+<br/><br/>
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+ <title>{% block title %}{% endblock %}</title>
+ </head>
+ <body class="container">
+ <div class="body-content">
+{% block content %}{% endblock %}
+ </div>
+ </body>
+</html>
