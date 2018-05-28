@@ -5,11 +5,12 @@
 {% bootstrap_messages %}
 {% block title %}Wybory{% endblock %}
 {% block content %}
-{% bootstrap_button "Logowanie użytkownika" href='login'  %} <br/><br/>
-    {% bootstrap_button "Obszar administratora" href='admin' button_type="link" button_class="btn-primary" %}
-<table class="table" align="center">
-<caption class="text-center">Najnowsze wybory</caption>
-<tr bgcolor="#00ffff">
+{% bootstrap_button "Obszar użytkownika" href='login/user'  %} <br/><br/>
+    {% bootstrap_button "Obszar administratora" href='login/mod' button_type="link" button_class="btn-primary" %}
+{% if all_elections %}
+    <table class="table" align="center">
+    <caption class="text-center">Najnowsze wybory</caption>
+    <tr bgcolor="#00ffff">
     <td>
         ID wyborów
     </td>
@@ -19,20 +20,26 @@
     <td>
         Zakończenie wyborów
     </td>
-</tr>
-{%for election in all_elections %}
-<tr>
-    <td>
-        {{ election.ID_WYBOROW }}
-    </td>
-    <td>
-        {{ election.nazwaWyborow }}
-    </td>
-    <td>
-        {{ election.dataZakonczenia }}
-    </td>
-</tr>
-{% endfor %}
-</table>
+    </tr>
+    {%for election in all_elections %}
+    <tr>
+        <td>
+           {{ election.ID_WYBOROW }}
+        </td>
+        <td>
+            {{ election.nazwaWyborow }}
+        </td>
+        <td>
+            {{ election.dataZakonczenia }}
+        </td>
+    </tr>
+    {% endfor %}
+    </table>
     <br/>
+{% else %}
+    <br/><br/>
+    <div class="alert alert-danger">
+    <strong>Brak wyborów</strong>
+    </div>
+{% endif %}
 {% endblock %}

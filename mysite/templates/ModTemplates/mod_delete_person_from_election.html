@@ -1,0 +1,13 @@
+{% extends "ModTemplates/base_mod.html" %}
+{% load bootstrap3 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+{% bootstrap_messages %}
+{% block title %}Wybór listy{% endblock %}
+{% block content %}
+
+<div class="alert alert-success">
+    <strong>Usunięto osobę: {{ person.imie }} {{ person.nazwisko }} z wyborów: {{ election.nazwaWyborow }}</strong>
+    </div>
+    <a class="btn btn-primary" href={% url 'Szczegóły wyborów mod' election.ID_WYBOROW %} >Powrót do szczegółów wyborów</a>
+{% endblock %}

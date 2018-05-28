@@ -25,7 +25,8 @@ SECRET_KEY = '9yp!06@!wu=m@rflk6kr913j$eur16%wpx%69r3)xvc47klgol'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -39,7 +40,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'mysite.apps.MysiteConfig',
     'bootstrap3',
-    'reportlab'
+    'reportlab',
+    'bootstrap_datepicker_plus',
+    'captcha'
 ]
 
 MIDDLEWARE = [
@@ -103,9 +106,16 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
+AUTH_USER_MODEL = 'mysite.myUser'
 # Internationalization
 # https://docs.djangoproject.com/en/2.0/topics/i18n/
+#Authentication backends
+AUTHENTICATION_BACKENDS = (
+
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+LOGIN_REDIRECT_URL = 'home'
 
 LANGUAGE_CODE = 'en-us'
 
@@ -123,3 +133,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (os.path.join('static'), )
+
+BOOTSTRAP3 = {
+    'include_jquery': True,
+}

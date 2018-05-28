@@ -9,12 +9,12 @@
     <div class="alert alert-success">
     <strong>{{message}}</strong>
     </div>
-    <a class="btn btn-primary" href={% url 'Lista wyborów' logged_person.pesel %} >Powrót do listy wyborów</a>
+    <a class="btn btn-primary" href={% url 'Lista wyborów' %} >Powrót do listy wyborów</a>
 {% else %}
     <div class="alert alert-danger">
-    <strong>Wybrano nieprawidłową liczbę kandydatów</strong>
+    <strong>{{ message }}</strong>
     </div>
-    <a class="btn btn-primary" href={% url 'Lista kandydatów' logged_person.pesel election.ID_WYBOROW %} >Powrót do głosowania</a>
+    <a class="btn btn-primary" href={% url 'Lista kandydatów' election.ID_WYBOROW %} >Powrót do głosowania</a>
 {% endif %}
 
 {% endblock %}

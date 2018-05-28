@@ -1,0 +1,62 @@
+{% extends "ModTemplates/base_mod.html" %}
+{% load bootstrap3 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+{% bootstrap_messages %}
+{% block title %}Lista wyborów{% endblock %}
+{% block content %}
+    <a href="{% url 'Nowe wybory mod' %}" class="btn btn-primary" >Nowe wybory</a>
+    <br/><br/>
+
+
+{% if all_elections %}
+<table class="table" align="center">
+<tr bgcolor="#00ffff">
+    <td>
+        ID wyborów
+    </td>
+    <td>
+        Nazwa wyborów
+    </td>
+    <td>
+        Zakończenie wyborów
+    </td>
+    <td>
+        Akcja
+    </td>
+</tr>
+
+{%for election in all_elections %}
+<tr>
+    <td>
+        {{ election.myElection.ID_WYBOROW }}
+    </td>
+    <td>
+        {{ election.myElection.nazwaWyborow }}
+    </td>
+    <td>
+        {{ election.myElection.dataZakonczenia }}
+    </td>
+    <td>
+    <!-- Generowanie raportu lub dodawanie wyborców -->
+        {% if not election.in_time %}
+            <a class="btn btn-info" href='/' >Raport</a>
+        {% else %}
+            <a class="btn btn-info" href="{% url 'Dodaj wyborców mod' election.myElection.ID_WYBOROW %}">Dodaj wyborców</a>
+        {% endif %}
+    <!-- Przeglądanie szczegółów wyborów -->
+        <a class="btn btn-default" href="{% url 'Szczegóły wyborów mod' election.myElection.ID_WYBOROW %}">Szczegóły</a>
+    <!-- Usuwanie wyborów -->
+        <a class="btn btn-danger" href="{% url 'Usuń wybory' election.myElection.ID_WYBOROW %}">Usuń</a>
+    </td>
+</tr>
+{% endfor %}
+</table>
+    <br/>
+{% else %}
+    <br/>
+    <div class="alert alert-danger">
+    <strong>Brak wyborów</strong>
+    </div>
+{% endif %}
+{% endblock %}

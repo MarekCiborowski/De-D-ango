@@ -1,3 +1,6 @@
 .body{
     padding: 15px;
 }
+.post-form textarea, .post-form input {
+    width: 100%;
+}

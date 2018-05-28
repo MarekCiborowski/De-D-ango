@@ -1,0 +1,68 @@
+{% extends "ModTemplates/base_mod.html" %}
+{% load bootstrap3 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+{% bootstrap_messages %}
+{% block title %}Szczegóły wyborów{% endblock %}
+{% block content %}
+    <a href="{% url 'Wybory mod' %}" class="btn btn-primary">Powrót do listy wyborów</a>
+{% if allowed %}
+<table class="table" align="center">
+<caption class="text-center">Osoby biorące udział w wyborach {{ election.nazwaWyborow }}</caption>
+<tr bgcolor="#00ffff">
+    <td>
+        Pesel
+    </td>
+    <td>
+        Imie
+    </td>
+    <td>
+        Nazwisko
+    </td>
+    <td>
+        Akcja
+    </td>
+</tr>
+{%for person in allowed %}
+{% if person.isCandidate %}
+<tr style="background-color: darkgray">
+    <td>
+        {{ person.person.pesel }}
+    </td>
+    <td>
+        {{ person.person.imie }}
+    </td>
+    <td>
+        {{ person.person.nazwisko }}
+    </td>
+    <td>
+        <a class="btn btn-danger" href="{% url 'Usuń osobę z wyborów' election.ID_WYBOROW person.person.pesel %}">Usuń</a>
+    </td>
+</tr>
+{% else %}
+    <tr>
+    <td>
+        {{ person.person.pesel }}
+    </td>
+    <td>
+        {{ person.person.imie }}
+    </td>
+    <td>
+        {{ person.person.nazwisko }}
+    </td>
+    <td>
+        <a class="btn btn-danger" href="{% url 'Usuń osobę z wyborów' election.ID_WYBOROW person.person.pesel %}">Usuń</a>
+    </td>
+</tr>
+    {% endif %}
+
+{% endfor %}
+</table>
+    <br/>
+{% else %}
+<br/><br/>
+    <div class="alert alert-danger">
+    <strong>Brak wyborców</strong>
+    </div>
+{% endif %}
+{% endblock %}

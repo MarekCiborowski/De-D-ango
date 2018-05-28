@@ -1,0 +1,54 @@
+{% extends "ModTemplates/base_mod.html" %}
+{% load bootstrap3 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+{% bootstrap_messages %}
+{% block title %}Lista wyborców{% endblock %}
+{% block content %}
+<a href="{% url 'Nowy wyborca mod' %}" class="btn btn-primary" >Nowa osoba</a>
+    <br/>
+    <br/>
+{% if all_people %}
+<table class="table" align="center">
+<tr bgcolor="#00ffff">
+    <td>
+        Pesel
+    </td>
+    <td>
+        Imie
+    </td>
+    <td>
+        Nazwisko
+    </td>
+    <td>
+        Akcja
+    </td>
+</tr>
+
+{%for person in all_people %}
+<tr>
+    <td>
+        {{ person.pesel }}
+    </td>
+    <td>
+        {{ person.imie }}
+    </td>
+    <td>
+        {{ person.nazwisko }}
+    </td>
+    <td>
+    <!-- Usuwanie osoby -->
+        <a class="btn btn-danger" href="{% url 'Usuń osobę' person.pesel %}">Usuń</a>
+    </td>
+</tr>
+{% endfor %}
+</table>
+    <br/>
+{% else %}
+    <br/>
+    <div class="alert alert-danger">
+    <strong>Brak wyborców</strong>
+    </div>
+{% endif %}
+
+{% endblock %}

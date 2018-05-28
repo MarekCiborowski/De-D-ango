@@ -17,9 +17,12 @@
 {% bootstrap_css %}
 {% bootstrap_javascript %}
 {% bootstrap_messages %}
+{% block extrahead %}       {# Extra Resources Start #}
+{{ form.media }}            {# Form required JS and CSS #}
+{% endblock %}
 <head>
-<span class=" container fixed-top btn-success btn">
-    <a href="/" class="btn" style="font-size: xx-large">Elections and everything</a>
+<span class=" container fixed-top btn-info btn">
+    <a href="/mod" class="btn" style="font-size: xx-large">Obszar moderatora</a>
 </span>
 </head>
 <br/><br/>
@@ -31,7 +34,7 @@
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
  <title>{% block title %}{% endblock %}</title>
  </head>
- <body class="container">
+ <body class="container" style="background-color: darkgrey">
  <div class="body-content">
 {% block content %}{% endblock %}
  </div>

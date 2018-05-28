@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load bootstrap3 %}
+{% bootstrap_css %}
+{% load static %}
+{% bootstrap_javascript %}
+{% bootstrap_messages %}
+{% block title %}Brak dostępu{% endblock %}
+{% block content %}
+<br/><br/>
+    <div class="alert alert-danger">
+    <strong>Brak dostępu do podanej strony</strong>
+    </div>
+    <img src="{% static "graphics/error.jpg" %}" style="width: 20%; margin-left: auto; margin-right: auto; display: block" />
+{% endblock %}

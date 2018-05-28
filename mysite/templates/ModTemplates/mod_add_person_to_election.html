@@ -1,0 +1,17 @@
+{% extends "ModTemplates/base_mod.html" %}
+{% load bootstrap3 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+{% bootstrap_messages %}
+{% block title %}Dodawanie wyborcy do wyborów{% endblock %}
+{% block content %}
+
+<h1>Dodaj osobę do wyborów</h1>
+<form  method="post" action="{% url 'Dodaj wyborców mod' election_id %}">
+    {% csrf_token %}
+    <table>
+    {{ form.as_table }}
+    </table>
+    <input type="submit" name="submit" value="Zatwierdź" />
+</form>
+{% endblock %}

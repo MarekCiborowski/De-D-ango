@@ -1,0 +1,20 @@
+{% extends "ModTemplates/base_mod.html" %}
+{% load bootstrap3 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+{% bootstrap_messages %}
+{% block title %}Wybór listy{% endblock %}
+{% block content %}
+
+    {% if message %}
+    <br/>
+    <div class="alert alert-danger">
+    <strong>{{ message }}</strong>
+    </div>
+{% endif %}
+    <div><a href="{% url 'Nowy moderator' %}" class="btn btn-default">Dodaj moderatora</a></div>
+    <br/>
+<a href="{% url 'Wybory mod' %}" class="btn btn-primary" style="float: right; width: 350pt; height: 70pt; font-size: 50px">Lista wyborów</a>
+<a href="{% url 'Wyborcy mod' %}"class="btn btn-info" style=" width: 350pt; height: 70pt; font-size: 50px">Lista osób</a>
+
+{% endblock %}
