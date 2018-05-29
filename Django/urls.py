@@ -22,5 +22,5 @@ urlpatterns = [
     path('', include("mysite.urls"))
 ]
 urlpatterns += [
-    url(r'^captcha/', include('captcha.urls')),
+    url(r'^captcha/', include('captcha.urls'),),
 ]

@@ -1,6 +1,5 @@
 from captcha.fields import CaptchaField
 from django import forms
-from django.contrib.auth.models import User
 from mysite.models import osoba, osobaWybory, wybory
 from bootstrap_datepicker_plus import DateTimePickerInput
 
@@ -39,6 +38,7 @@ class ModForm(forms.Form):
 
 
 class LoginForm(forms.Form):
-    captcha = CaptchaField()
+
     username = forms.CharField(max_length=50, label='Nazwa użytkownika')
     password = forms.CharField(widget=forms.PasswordInput, max_length=50, label='Hasło')
+    captcha = CaptchaField()

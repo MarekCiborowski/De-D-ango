@@ -115,6 +115,12 @@ AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
 )
 
+CAPTCHA_IMAGE_SIZE = (200, 50)
+
+CAPTCHA_OUTPUT_FORMAT = u'%(hidden_field)s%(image)s<br><br>%(text_field)s'
+
+CAPTCHA_FONT_SIZE = 40
+
 LOGIN_REDIRECT_URL = 'home'
 
 LANGUAGE_CODE = 'en-us'

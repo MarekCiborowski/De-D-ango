@@ -8,10 +8,10 @@
 <h1>Zaloguj</h1>
 <form method="post" action="{% url 'Logowanie moderatora' %}" >
     {% csrf_token %}
-    <table>
+    <table style="border-collapse:separate;border-spacing: 10px">
     {{ form.as_table }}
     </table>
-    <input type="submit" name="submit" value="Zaloguj" />
-
+    <input type="submit" name="submit" value="Zaloguj" class="btn btn-primary"/>
+<a href="#void" class="captcha-refresh btn btn-default">Odśwież</a>
 </form>
 {% endblock %}

@@ -194,8 +194,8 @@ def user_login(request):
 
             username = form.cleaned_data['username']
             password = form.cleaned_data['password']
-            user = myUser.objects.get(username=username)
-            if user.check_password(password):
+            user = authenticate(request, username=username, password=password)
+            if user is not None:
                 logged_user = myUser.objects.get(username=username)
                 if not logged_user.is_mod:
                     login(request, user)
