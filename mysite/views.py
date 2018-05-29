@@ -205,7 +205,9 @@ def user_login(request):
             else:
                 raise forms.ValidationError('Niepoprawna nazwa lub hasło')
         else:
-            raise forms.ValidationError('Wystąpił błąd w formularzu')
+            template = loader.get_template('user_login.html')
+            error_message = "Wprowadzono niepoprawne dane"
+            return HttpResponse(template.render({'form': form, 'error_message': error_message}, request))
     else:
         form = LoginForm()
 
@@ -520,7 +522,9 @@ def mod_login(request):
             else:
                 raise forms.ValidationError('Niepoprawna nazwa lub hasło')
         else:
-            raise forms.ValidationError('Wystąpił błąd w formularzu')
+            template = loader.get_template('ModTemplates/mod_login.html')
+            error_message = "Wprowadzono niepoprawne dane"
+            return HttpResponse(template.render({'form': form, 'error_message': error_message}, request))
     else:
         form = LoginForm()
 

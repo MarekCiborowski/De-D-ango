@@ -5,7 +5,13 @@
 {% bootstrap_messages %}
 {% block title %}Logowanie użytkownika{% endblock %}
 {% block content %}
-
+{% if error_message %}
+    <br/>
+    <div class="alert alert-danger">
+    <strong>{{ error_message }}</strong>
+    </div>
+        <br/>
+    {% endif %}
 <h1>Zaloguj</h1>
     {% if message %}
     {{ message }}
