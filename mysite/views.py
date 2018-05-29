@@ -20,7 +20,7 @@ def home_view(request):
         user = request.user
         logged_user = myUser.objects.get(username=user.username)
         if logged_user.is_mod:
-            username = logged_user.mod_profile.name + ' ' + logged_user.mod_profile.surname
+            username = 'moderator ' + logged_user.mod_profile.name + ' ' + logged_user.mod_profile.surname
         else:
             username = logged_user.user_profile.imie + ' ' + logged_user.user_profile.nazwisko
     template = loader.get_template("home.html")
@@ -297,7 +297,7 @@ def mod_person_list(request):
         return render(request, 'access_denied.html')
     template = loader.get_template("ModTemplates/mod_person_list.html")
     all_people = osoba.objects.all()
-    username = logged_user.mod_profile.name + ' ' + logged_user.mod_profile.surname
+    username = 'moderator ' +  logged_user.mod_profile.name + ' ' + logged_user.mod_profile.surname
     context = {
         'username': username,
         'all_people': all_people
@@ -333,7 +333,7 @@ def mod_election_list(request):
         this_election.in_time = in_time
         mylist.append(this_election)
 
-    username = logged_user.mod_profile.name + ' ' + logged_user.mod_profile.surname
+    username = 'moderator ' + logged_user.mod_profile.name + ' ' + logged_user.mod_profile.surname
     context = {
         'username': username,
         'all_elections': mylist
@@ -367,7 +367,7 @@ def mod_new_person(request):
             raise forms.ValidationError('Wystąpił błąd w formularzu')
     else:
         form = OsobaForm()
-    username = logged_user.mod_profile.name + ' ' + logged_user.mod_profile.surname
+    username = 'moderator ' + logged_user.mod_profile.name + ' ' + logged_user.mod_profile.surname
     template = loader.get_template('ModTemplates/mod_new_person.html')
     return HttpResponse(template.render({'form': form, 'username': username}, request))
 
@@ -397,7 +397,7 @@ def mod_new_election(request):
             raise forms.ValidationError('Wystąpił błąd w formularzu')
     else:
         form = WyboryForm()
-    username = logged_user.mod_profile.name + ' ' + logged_user.mod_profile.surname
+    username = 'moderator ' + logged_user.mod_profile.name + ' ' + logged_user.mod_profile.surname
     template = loader.get_template('ModTemplates/mod_new_election.html')
     return HttpResponse(template.render({'form': form, 'username': username}, request))
 
@@ -428,7 +428,7 @@ def mod_election_details(request, election_id):
             .__getattribute__('kandydat')
         my_list.append(new_person)
 
-    username = logged_user.mod_profile.name + ' ' + logged_user.mod_profile.surname
+    username = 'moderator ' + logged_user.mod_profile.name + ' ' + logged_user.mod_profile.surname
     context = {
         'username': username,
         'election': election,
@@ -470,7 +470,7 @@ def mod_add_person_to_election(request, election_id):
     else:
 
         form = OsobaWyboryForm()
-    username = logged_user.mod_profile.name + ' ' + logged_user.mod_profile.surname
+    username = 'moderator ' + logged_user.mod_profile.name + ' ' + logged_user.mod_profile.surname
     context = {'form': form, 'election_id': election_id, 'username': username}
     template = loader.get_template('ModTemplates/mod_add_person_to_election.html')
 
@@ -487,7 +487,7 @@ def mod_list_choice(request):
         return render(request, 'access_denied.html')
 
     template = loader.get_template("ModTemplates/mod_list_choice.html")
-    username = logged_user.mod_profile.name + ' ' + logged_user.mod_profile.surname
+    username = 'moderator ' + logged_user.mod_profile.name + ' ' + logged_user.mod_profile.surname
     context = {
         'username': username
     }
@@ -541,7 +541,7 @@ def mod_delete_person(request, person_id):
     person = instance.imie + ' ' + instance.nazwisko
     instance.delete()
     template = loader.get_template('ModTemplates/mod_deleted_person.html')
-    username = logged_user.mod_profile.name + ' ' + logged_user.mod_profile.surname
+    username = 'moderator ' + logged_user.mod_profile.name + ' ' + logged_user.mod_profile.surname
     return HttpResponse(template.render({'person': person, 'username': username}, request))
 
 
@@ -556,7 +556,7 @@ def mod_delete_election(request, election_id):
 
     instance = get_object_or_404(wybory, pk=election_id)
     deleted_election = instance.nazwaWyborow
-    username = logged_user.mod_profile.name + ' ' + logged_user.mod_profile.surname
+    username = 'moderator ' + logged_user.mod_profile.name + ' ' + logged_user.mod_profile.surname
     context = {
         'username': username,
         'election': deleted_election
@@ -579,7 +579,7 @@ def mod_delete_person_from_election(request, election_id, person_id):
     election = get_object_or_404(wybory, pk=election_id)
     person = get_object_or_404(osoba, pk=person_id)
     template = loader.get_template('ModTemplates/mod_delete_person_from_election.html')
-    username = logged_user.mod_profile.name + ' ' + logged_user.mod_profile.surname
+    username = 'moderator ' + logged_user.mod_profile.name + ' ' + logged_user.mod_profile.surname
     context = {
         'username': username,
         'election': election,
@@ -615,7 +615,7 @@ def new_mod(request):
     else:
         form = ModForm()
     template = loader.get_template('ModTemplates/new_mod.html')
-    username = logged_user.mod_profile.name + ' ' + logged_user.mod_profile.surname
+    username = 'moderator ' + logged_user.mod_profile.name + ' ' + logged_user.mod_profile.surname
     context = {
         'username': username,
         'form': form
