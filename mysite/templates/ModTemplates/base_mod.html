@@ -31,7 +31,13 @@
         Zalogowano jako {{ username }}  <a href = "{% url 'Wyloguj' %}" class="btn btn-default">Wyloguj</a>
     </div>
 {% endif %}
-{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+{% if error_message %}
+    <br/>
+    <div class="alert alert-danger">
+    <strong>{{ error_message }}</strong>
+    </div>
+        <br/>
+    {% endif %}
  <title>{% block title %}{% endblock %}</title>
  </head>
  <body class="container" style="background-color: darkgrey">

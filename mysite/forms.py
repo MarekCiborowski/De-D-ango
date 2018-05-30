@@ -2,7 +2,7 @@ from captcha.fields import CaptchaField
 from django import forms
 from mysite.models import osoba, osobaWybory, wybory
 from bootstrap_datepicker_plus import DateTimePickerInput
-
+from datetimepicker.widgets import DateTimePicker
 
 
 

@@ -22,7 +22,8 @@ def home_view(request):
         if logged_user.is_mod:
             username = 'moderator ' + logged_user.mod_profile.name + ' ' + logged_user.mod_profile.surname
         else:
-            username = logged_user.user_profile.imie + ' ' + logged_user.user_profile.nazwisko
+            if not logged_user.is_mod:
+                username = logged_user.user_profile.imie + ' ' + logged_user.user_profile.nazwisko
     template = loader.get_template("home.html")
     all_elections = wybory.objects.order_by('-dataRozpoczecia')[:5]
     context = {
