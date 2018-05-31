@@ -7,7 +7,7 @@ urlpatterns = [
 
     path('loggedUser/election:<int:election_id>/details/',
          views.election_details, name='Szczegóły wyborów'),
-    path('loggedUser/election:<int:election_id>/results/',
+    path('election:<int:election_id>/results/',
          views.election_results, name='Wyniki wyborów'),
     path('loggedUser/election:<int:election_id>/candidates/',
          views.candidate_list, name='Lista kandydatów'),

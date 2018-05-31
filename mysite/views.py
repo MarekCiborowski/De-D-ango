@@ -8,7 +8,7 @@ from django.utils import timezone
 
 # Create your views here.
 from django.template import loader
-
+from .render import Render
 from mysite.models import myUser, Mod
 from .models import osoba, oddanyGlos, osobaWybory, wybory
 from .forms import OsobaForm, OsobaWyboryForm, WyboryForm, ModForm, LoginForm
@@ -154,31 +154,18 @@ def candidates_with_rating(election_id):
 
 
 def election_results(request, election_id):
-
-    if request.user.is_authenticated:
-        user = request.user
-        logged_user = myUser.objects.get(username=user.username)
-        if logged_user.is_mod:
-            return render(request, 'access_denied.html')
-    else:
-        return render(request, 'access_denied.html')
-    person_id = logged_user.user_profile.pesel
-    template = loader.get_template("election_results.html")
     election = get_object_or_404(wybory, pk=election_id)
-    logged_person = get_object_or_404(osoba, pk=person_id)
     candidates = candidates_with_rating(election_id)
     turnout = election_turnout(election_id)
 
-    username = logged_user.user_profile.imie + ' ' + logged_user.user_profile.nazwisko
+
     context = {
-        'username': username,
         'election': election,
-        'logged_person': logged_person,
         'candidates': candidates,
         'turnout': turnout
     }
 
-    return HttpResponse(template.render(context, request))
+    return Render.render('election_results.html', context)
 
 
 def user_login(request):

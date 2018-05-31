@@ -40,7 +40,7 @@
     <td>
     <!-- Generowanie raportu lub dodawanie wyborców -->
         {% if not election.in_time %}
-            <a class="btn btn-info" href='/' >Raport</a>
+            <a class="btn btn-info" href={% url 'Wyniki wyborów' election.myElection.ID_WYBOROW  %} >Raport</a>
         {% else %}
             <a class="btn btn-info" href="{% url 'Dodaj wyborców mod' election.myElection.ID_WYBOROW %}">Dodaj wyborców</a>
         {% endif %}

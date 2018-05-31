@@ -5,7 +5,6 @@
 {% bootstrap_messages %}
 {% block title %}Tworzenie nowych wyborów{% endblock %}
 {% block content %}
-{{ form.media }}
 <h1>Dodaj wybory</h1>
 <form id="wybory_form" method="post" action="{% url 'Nowe wybory mod' %}">
     {% csrf_token %}
