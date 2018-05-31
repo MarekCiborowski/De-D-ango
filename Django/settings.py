@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'reportlab',
     'bootstrap_datepicker_plus',
     'captcha',
-    'datetimepicker'
+    'datetimewidget'
 ]
 
 MIDDLEWARE = [
