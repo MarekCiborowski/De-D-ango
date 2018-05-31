@@ -38,7 +38,7 @@ class osoba(models.Model):
     pesel = models.IntegerField(primary_key=True)
     imie = models.CharField(max_length=50)
     nazwisko = models.CharField(max_length=50)
-    nr_dowodu = models.CharField(max_length=10)
+    nr_dowodu = models.CharField(unique=True, max_length=10)
 
     class Meta:
         ordering = ["pesel"]

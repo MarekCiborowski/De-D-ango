@@ -1,3 +1,5 @@
+import datetime
+
 from django import forms
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.models import User
@@ -37,6 +39,7 @@ class allowedElection(object):
     myElection = wybory()
     voted = osobaWybory()
     in_time = ''
+    elections_started = ''
 
 
 def elections_list(request):
@@ -56,14 +59,20 @@ def elections_list(request):
         .order_by('dataZakonczenia')
     for x in allowed_elections:
         voted = osobaWybory.objects.get(ID_WYBOROW=x.ID_WYBOROW, pesel=person_id)
-        if timezone.now() < x.dataZakonczenia:
+        if str(datetime.datetime.now()) < str(x.dataZakonczenia):
             in_time = True
         else:
             in_time = False
+
+        if str(datetime.datetime.now()) > str(x.dataZakonczenia):
+            election_started = True
+        else:
+            election_started = False
         election = allowedElection()
         election.myElection = x
         election.voted = voted
         election.in_time = in_time
+        election.elections_started = election_started
         mylist.append(election)
 
     logged_person = get_object_or_404(osoba, pk=person_id)
@@ -157,8 +166,8 @@ def election_results(request, election_id):
     election = get_object_or_404(wybory, pk=election_id)
     candidates = candidates_with_rating(election_id)
     turnout = election_turnout(election_id)
-
-
+    if str(datetime.datetime.now()) <  str(election.dataZakonczenia):
+        return render(request, 'access_denied.html')
     context = {
         'election': election,
         'candidates': candidates,
@@ -314,7 +323,7 @@ def mod_election_list(request):
     mylist = []
     all_elections = wybory.objects.all().order_by('dataZakonczenia')
     for x in all_elections:
-        if timezone.now() < x.dataZakonczenia:
+        if str(datetime.datetime.now()) < str(x.dataZakonczenia):
             in_time = True
         else:
             in_time = False

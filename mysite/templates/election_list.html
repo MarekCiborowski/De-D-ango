@@ -34,7 +34,7 @@
     </td>
     <td>
     <!-- Nie głosowano a wybory wciąż się nie zakończyły -->
-        {% if not election.voted.oddalGlos and election.in_time%}
+        {% if not election.voted.oddalGlos and election.in_time and election.election_started%}
         <a class="btn btn-primary" href={% url 'Lista kandydatów' election.myElection.ID_WYBOROW  %} >Głosuj</a>
         {% else %}
             <!-- Wybory nie zostały zakończone, ale już w nich zagłosowano -->
