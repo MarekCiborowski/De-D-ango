@@ -45,7 +45,7 @@ INSTALLED_APPS = [
     'captcha',
     'datetimewidget'
 ]
-
+TIME_ZONE = 'Europe/Warsaw'
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
