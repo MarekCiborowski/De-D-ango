@@ -1,5 +1,6 @@
 import datetime
 
+import pytz
 from django import forms
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.models import User
@@ -59,12 +60,12 @@ def elections_list(request):
         .order_by('dataZakonczenia')
     for x in allowed_elections:
         voted = osobaWybory.objects.get(ID_WYBOROW=x.ID_WYBOROW, pesel=person_id)
-        if str(datetime.datetime.now()) < str(x.dataZakonczenia):
+        if str(datetime.datetime.now(pytz.timezone('Europe/Warsaw'))) < str(x.dataZakonczenia):
             in_time = True
         else:
             in_time = False
 
-        if str(datetime.datetime.now()) > str(x.dataZakonczenia):
+        if str(datetime.datetime.now(pytz.timezone('Europe/Warsaw'))) > str(x.dataZakonczenia):
             election_started = True
         else:
             election_started = False
@@ -166,7 +167,7 @@ def election_results(request, election_id):
     election = get_object_or_404(wybory, pk=election_id)
     candidates = candidates_with_rating(election_id)
     turnout = election_turnout(election_id)
-    if str(datetime.datetime.now()) <  str(election.dataZakonczenia):
+    if str(datetime.datetime.now(pytz.timezone('Europe/Warsaw'))) <  str(election.dataZakonczenia):
         return render(request, 'access_denied.html')
     context = {
         'election': election,
@@ -323,7 +324,7 @@ def mod_election_list(request):
     mylist = []
     all_elections = wybory.objects.all().order_by('dataZakonczenia')
     for x in all_elections:
-        if str(datetime.datetime.now()) < str(x.dataZakonczenia):
+        if str(datetime.datetime.now(pytz.timezone('Europe/Warsaw'))) < str(x.dataZakonczenia):
             in_time = True
         else:
             in_time = False
