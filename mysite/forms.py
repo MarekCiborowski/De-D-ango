@@ -2,7 +2,7 @@ from captcha.fields import CaptchaField
 from django import forms
 from mysite.models import osoba, osobaWybory, wybory
 from bootstrap_datepicker_plus import DateTimePickerInput
-from django_bootstrap_datetimepicker.widgets import BootstrapDateTimeInput
+
 
 from datetimewidget.widgets import DateTimeWidget
 
@@ -19,8 +19,8 @@ class WyboryForm(forms.Form):
 
     nazwaWyborow = forms.CharField(max_length=100, label='Nazwa wyborów')
     maxLiczbaKandydatowDoPoparcia = forms.IntegerField(label='Maksymalna liczba kandydatów do poparcia')
-    dataRozpoczecia = forms.DateTimeField(widget=BootstrapDateTimeInput(), label='Data rozpoczęcia')
-    dataZakonczenia = forms.DateTimeField(widget=BootstrapDateTimeInput(), label='Data zakończenia')
+    dataRozpoczecia = forms.DateTimeField(widget=DateTimePickerInput(), label='Data rozpoczęcia')
+    dataZakonczenia = forms.DateTimeField(widget=DateTimePickerInput(), label='Data zakończenia')
 
     def someValidation(self):
         return self.cleaned_data['dataZakonczenia'] > self.cleaned_data['dataRozpoczecia']

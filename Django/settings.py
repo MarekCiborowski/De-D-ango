@@ -44,7 +44,6 @@ INSTALLED_APPS = [
     'bootstrap_datepicker_plus',
     'captcha',
     'datetimewidget',
-    'django_bootstrap_datetimepicker'
 ]
 TIME_ZONE = 'Europe/Warsaw'
 MIDDLEWARE = [
