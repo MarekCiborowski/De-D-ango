@@ -5,6 +5,20 @@
     <meta charset="utf-8">
     <title>Raport</title>
     <style type="text/css">
+        @font-face {
+            font-family: "Arimo";
+            font-style: normal;
+            font-weight: 400;
+            src: url('D:\Django\mysite\static\Arimo-Regular.ttf');
+        }
+
+        @font-face {
+            font-family: "Arimo";
+            font-style: normal;
+            font-weight: 700;
+            src: url('D:\Django\mysite\static\Arimo-Bold.ttf');
+        }
+
 
         @page {
             size: A4;
@@ -34,7 +48,7 @@
 
     </style>
 </head>
-<body>
+<body style="font-family: 'Arimo'">
     <table class="table" align="center" style="font-size: x-large">
 <caption class="text-center" style="font-size: xx-large; font-weight: bolder">Wyniki wyborów: {{ election.nazwaWyborow }}</caption>
 <tr style="font-weight: bold">

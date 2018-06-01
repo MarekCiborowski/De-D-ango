@@ -3,13 +3,9 @@ import datetime
 import pytz
 from django import forms
 from django.contrib.auth import login, authenticate, logout
-from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.shortcuts import render
-from django.shortcuts import get_object_or_404, get_list_or_404
-from django.utils import timezone
-
-# Create your views here.
+from django.shortcuts import get_object_or_404
 from django.template import loader
 from .render import Render
 from mysite.models import myUser, Mod
