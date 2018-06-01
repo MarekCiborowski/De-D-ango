@@ -1,5 +1,5 @@
 import datetime
-
+import os
 import pytz
 from django import forms
 from django.contrib.auth import login, authenticate, logout
@@ -165,7 +165,11 @@ def election_results(request, election_id):
     turnout = election_turnout(election_id)
     if str(datetime.datetime.now(pytz.timezone('Europe/Warsaw'))) <  str(election.dataZakonczenia):
         return render(request, 'access_denied.html')
+    regular_font_path = os.path.realpath('.') + '\mysite\static\Arimo-Regular.ttf'
+    bold_font_path = os.path.realpath('.') + '\mysite\static\Arimo-Bold.ttf'
     context = {
+        'bold_font_path': bold_font_path,
+        'regular_font_path': regular_font_path,
         'election': election,
         'candidates': candidates,
         'turnout': turnout
@@ -197,7 +201,7 @@ def user_login(request):
                 else:
                     raise forms.ValidationError('Wystąpił błąd w formularzu')
             else:
-                raise forms.ValidationError('Niepoprawna nazwa lub hasło')
+                raise forms.ValidationError('Niepoprawne dane')
         else:
             template = loader.get_template('user_login.html')
             error_message = "Wprowadzono niepoprawne dane"
@@ -514,7 +518,7 @@ def mod_login(request):
                 else:
                     raise forms.ValidationError('Wystąpił błąd w formularzu')
             else:
-                raise forms.ValidationError('Niepoprawna nazwa lub hasło')
+                raise forms.ValidationError('Niepoprawne dane')
         else:
             template = loader.get_template('ModTemplates/mod_login.html')
             error_message = "Wprowadzono niepoprawne dane"

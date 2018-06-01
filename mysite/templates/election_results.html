@@ -9,14 +9,14 @@
             font-family: "Arimo-regular";
             font-style: normal;
             font-weight: normal;
-            src: url('D:\De_Dzango\mysite\static\Arimo-Regular.ttf');
+            src: url('{{ regular_font_path }}');
         }
 
         @font-face {
             font-family: "Arimo-bold";
             font-style: normal;
             font-weight: bold;
-            src: url('D:\De_Dzango\mysite\static\Arimo-Bold.ttf');
+            src: url('{{ bold_font_path }}');
         }
 
 
@@ -50,7 +50,7 @@
 </head>
 <body style="font-family: 'Arimo-regular'">
     <table class="table" align="center" style="font-size: x-large">
-<caption class="text-center" style="font-size: xx-large; font-family: Arimo-bold">Wyniki wyborów: {{ election.nazwaWyborow }}</caption>
+<caption class="text-center" style="font-size: xx-large; font-family: Arimo-bold">Wyniki wyborów: {{ election.nazwaWyborow }} </caption>
 <tr style="font-family: Arimo-bold" >
     <td>
         Kandydat
