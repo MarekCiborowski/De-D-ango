@@ -6,17 +6,17 @@
     <title>Raport</title>
     <style type="text/css">
         @font-face {
-            font-family: "Arimo";
+            font-family: "Arimo-regular";
             font-style: normal;
-            font-weight: 400;
-            src: url('D:\Django\mysite\static\Arimo-Regular.ttf');
+            font-weight: normal;
+            src: url('D:\De_Dzango\mysite\static\Arimo-Regular.ttf');
         }
 
         @font-face {
-            font-family: "Arimo";
+            font-family: "Arimo-bold";
             font-style: normal;
-            font-weight: 700;
-            src: url('D:\Django\mysite\static\Arimo-Bold.ttf');
+            font-weight: bold;
+            src: url('D:\De_Dzango\mysite\static\Arimo-Bold.ttf');
         }
 
 
@@ -48,10 +48,10 @@
 
     </style>
 </head>
-<body style="font-family: 'Arimo'">
+<body style="font-family: 'Arimo-regular'">
     <table class="table" align="center" style="font-size: x-large">
-<caption class="text-center" style="font-size: xx-large; font-weight: bolder">Wyniki wyborów: {{ election.nazwaWyborow }}</caption>
-<tr style="font-weight: bold">
+<caption class="text-center" style="font-size: xx-large; font-family: Arimo-bold">Wyniki wyborów: {{ election.nazwaWyborow }}</caption>
+<tr style="font-family: Arimo-bold" >
     <td>
         Kandydat
     </td>
