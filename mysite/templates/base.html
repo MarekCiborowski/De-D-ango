@@ -18,9 +18,13 @@
 {% bootstrap_javascript %}
 {% bootstrap_messages %}
 <head>
-<span class=" container fixed-top btn-success btn">
-    <a href="/" class="btn" style="font-size: xx-large">Elections and everything</a>
-</span>
+
+    <a href="/" class=" container fixed-top btn-success btn" style="font-size: xx-large">Elections and everything</a>
+
+    <link
+        href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap.min.css"
+        rel="stylesheet">
+    {{ form.media.css }}
 </head>
 <br/><br/>
 {% if username %}

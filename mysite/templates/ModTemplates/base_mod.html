@@ -21,9 +21,13 @@
 {{ form.media }}            {# Form required JS and CSS #}
 {% endblock %}
 <head>
-<span class=" container fixed-top btn-info btn">
-    <a href="/mod" class="btn" style="font-size: xx-large">Obszar moderatora</a>
-</span>
+
+    <a href="/mod" class="container fixed-top btn-info btn" style="font-size: xx-large">Obszar moderatora</a>
+
+    <link
+        href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap.min.css"
+        rel="stylesheet">
+    {{ form.media.css }}
 </head>
 <br/><br/>
 {% if username %}
@@ -45,4 +49,11 @@
 {% block content %}{% endblock %}
  </div>
  </body>
+<script type="text/javascript"
+     src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.8.3/jquery.min.js">
+    </script>
+    <script type="text/javascript"
+     src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js">
+    </script>
+    {{ form.media.js }}
 </html>

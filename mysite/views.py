@@ -165,8 +165,8 @@ def election_results(request, election_id):
     turnout = election_turnout(election_id)
     if str(datetime.datetime.now(pytz.timezone('Europe/Warsaw'))) <  str(election.dataZakonczenia):
         return render(request, 'access_denied.html')
-    regular_font_path = os.path.realpath('.') + '\mysite\static\Arimo-Regular.ttf'
-    bold_font_path = os.path.realpath('.') + '\mysite\static\Arimo-Bold.ttf'
+    regular_font_path = os.path.abspath('.') + '/mysite/static/Arimo-Regular.ttf'
+    bold_font_path = os.path.abspath('.') + '/mysite/static/Arimo-Bold.ttf'
     context = {
         'bold_font_path': bold_font_path,
         'regular_font_path': regular_font_path,

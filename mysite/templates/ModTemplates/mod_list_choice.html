@@ -14,7 +14,11 @@
 {% endif %}
     <div><a href="{% url 'Nowy moderator' %}" class="btn btn-default">Dodaj moderatora</a></div>
     <br/>
-<a href="{% url 'Wybory mod' %}" class="btn btn-primary" style="float: right; width: 350pt; height: 70pt; font-size: 50px">Lista wyborów</a>
-<a href="{% url 'Wyborcy mod' %}"class="btn btn-info" style=" width: 350pt; height: 70pt; font-size: 50px">Lista osób</a>
+    <div style="float: right">
+<a href="{% url 'Wybory mod' %}" class="btn btn-primary" style=" width: 350pt; height: 70pt; font-size: 50px;
+ display: table-cell; vertical-align: middle;">Lista wyborów</a>
+        </div>
+<a href="{% url 'Wyborcy mod' %}"class="btn btn-info" style=" width: 350pt; height: 70pt; font-size: 50px; display: table-cell;
+vertical-align: middle; ">Lista osób</a>
 
 {% endblock %}

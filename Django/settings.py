@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'reportlab',
     'bootstrap_datepicker_plus',
     'captcha',
-    'datetimewidget'
+    'datetimewidget',
+    'django_bootstrap_datetimepicker'
 ]
 TIME_ZONE = 'Europe/Warsaw'
 MIDDLEWARE = [
